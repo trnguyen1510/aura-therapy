@@ -8,10 +8,10 @@ def pi(request):
         form = personform(request.POST)
         if form.is_valid():
             form.save()
-            return redirect("personal_info/pi.html")
+            return render(request, 'index.html')
     else:
         form = personform()
-    return render(request, 'personal_info/pi.html', {'form': form })
+        return render(request, 'personal_info/pi.html', {'form': form })
 
 def therapist(request):
     return render(request, 'personal_info/therapist.html')
