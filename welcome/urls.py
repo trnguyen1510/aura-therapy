@@ -1,9 +1,12 @@
 from django.urls import path
-from django.conf.urls import include, url, handler404, handler500
 from . import views
-from django.conf import settings
-from django.conf.urls.static import static
-
+from django.contrib.auth import views as auth_views
 
 urlpatterns = [
-    path('welcome/', views.welcome, name='welcome')]
+    path('', views.index, name='index'),
+    path('about/', views.about, name='about'),
+    path('login/', views.login, name='login'),
+    path('signup/', views.signup, name='signup'),
+    path('logout/', auth_views.LogoutView.as_view(template_name='index.html'), name='logout'),
+
+]
