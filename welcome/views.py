@@ -9,7 +9,6 @@ username_as_id = ""
 
 # Create your views here.
 
-
 def index(request):
     # Render the HTML template index.html
     return render(request, 'index.html')
@@ -69,3 +68,4 @@ def signup(request):
             user.save()
             return redirect('login')
     return render(request, "signup.html")
+
