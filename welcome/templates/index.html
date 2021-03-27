@@ -57,12 +57,18 @@
                         </li>
                     </ul>
                     {%if user.is_authenticated %}
+                    <div class="navbar-buttons mbr-section-btn"><a class="btn btn-danger display-4"
+                            href="{% url 'pi' %}">
+                            Survey</a></div>
+
                     <div class="navbar-buttons mbr-section-btn"><a class="btn btn-danger display-4" href="">
                             Profile</a></div>
 
                     <div class="navbar-buttons mbr-section-btn"><a class="btn btn-danger display-4"
                             href="{% url 'logout' %}">
                             Logout</a></div>
+                    <div class="navbar-buttons mbr-section-btn"><a class="btn btn-success display-4" href="">
+                            Call 911!</a></div>
                     {%else%}
 
                     <div class="navbar-buttons mbr-section-btn"><a class="btn btn-danger display-4"
@@ -74,6 +80,7 @@
                             Log In</a></div>
                     <div class="navbar-buttons mbr-section-btn"><a class="btn btn-success display-4" href="">
                             Call 911!</a></div>
+
                     {%endif%}
                 </div>
             </div>
