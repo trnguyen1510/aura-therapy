@@ -26,7 +26,7 @@ Concept into reality to create a platform from our experience seeking for help
 
 ### What we learned
 
-Setup can bwe conducted beforehead to sprint into the Hackathon
+Setup can be conducted beforehead to sprint into the Hackathon
 
 ### What's next for Aura | Help for you
 
