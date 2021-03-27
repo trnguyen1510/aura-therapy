@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+
+<link href="https://unpkg.com/survey-jquery@1.8.37/modern.css" type="text/css" rel="stylesheet" />
+<script src="https://unpkg.com/survey-jquery@1.8.37/survey.jquery.min.js"></script>
+
+<html lang="en">
+    <body>
+
+    <div id="surveyContainer"></div>
+    </body>
+</html>
+
+<script>
+    Survey.StylesManager.applyTheme("modern");
+
+var surveyJSON = {"pages":[{"name":"page1","elements":[{"type":"text","name":"question2","title":"First Name","isRequired":true,"size":0},{"type":"text","name":"question1","title":"Last Name","isRequired":true,"size":0},{"type":"text","name":"birthdate","title":"Your birthdate:","isRequired":true,"inputType":"date","autoComplete":"bdate"},{"type":"text","name":"email","title":"Your e-mail:","isRequired":true,"validators":[{"type":"email"}],"inputType":"email","autoComplete":"email","placeHolder":"jon.snow@nightwatch.org"}]}]}
+
+function sendDataToServer(survey) {
+    //send Ajax request to your web server.
+    alert("The results are:" + JSON.stringify(survey.data));
+}
+
+var survey = new Survey.Model(surveyJSON);
+$("#surveyContainer").Survey({
+    model: survey,
+    onComplete: sendDataToServer
+});
+</script>
