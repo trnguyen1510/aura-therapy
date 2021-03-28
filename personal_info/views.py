@@ -1,5 +1,6 @@
 
 from django.shortcuts import render, redirect
+<<<<<<< HEAD
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User,auth
 from .models import Profile
@@ -7,6 +8,13 @@ from .forms import UserForm, ProfileForm
 from django.forms.models import inlineformset_factory
 from django.core.exceptions import PermissionDenied
 from django.contrib.auth import update_session_auth_hash
+=======
+from .forms import personform
+from .models import Person
+from django.http import JsonResponse
+import pandas as pd
+from django.core import serializers
+>>>>>>> 57e2a8b79bd90752332599806707796f59d63b84
 
 # Create your views here.
 @login_required()  # only logged in users should access this
@@ -70,5 +78,16 @@ def pi(request):
             "formset": formset,
         })
     else:
+<<<<<<< HEAD
         raise PermissionDenied
+=======
+        form = personform()
+        return render(request, 'personal_info/pi.html', {'form': form })
+
+def therapist(request):
+    all_entries = Person.objects.all()
+    relevant = Person.objects.values_list('street_address','city','state','zip_code')
+    
+    return render(request, 'personal_info/therapist.html', {'all_entries': all_entries})
+>>>>>>> 57e2a8b79bd90752332599806707796f59d63b84
 
