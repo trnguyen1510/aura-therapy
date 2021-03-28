@@ -7,12 +7,8 @@ from .forms import UserForm, ProfileForm
 from django.forms.models import inlineformset_factory
 from django.core.exceptions import PermissionDenied
 from django.contrib.auth import update_session_auth_hash
-from .forms import personform
-from .models import Person
 from django.http import JsonResponse
-import pandas as pd
 from django.core import serializers
-
 
 # Create your views here.
 @login_required()  # only logged in users should access this
@@ -76,7 +72,6 @@ def pi(request):
             "formset": formset,
         })
     else:
-
         raise PermissionDenied
         form = personform()
         return render(request, 'personal_info/pi.html', {'form': form })
