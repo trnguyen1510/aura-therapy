@@ -14,5 +14,8 @@ def pi(request):
         return render(request, 'personal_info/pi.html', {'form': form })
 
 def therapist(request):
-    return render(request, 'personal_info/therapist.html')
+    all_entries = Person.objects.all()
+    #all_entries =  personal_info_person.objects.all()
+    #print (all_entries)
+    return render(request, 'personal_info/therapist.html', {'all_entries': all_entries })
 

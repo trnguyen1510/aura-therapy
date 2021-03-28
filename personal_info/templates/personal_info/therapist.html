@@ -1,0 +1,42 @@
+<head></head><link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+</head>
+
+<table class= "table table-striped">
+    <thead>
+    <tr>
+        <th>First Name</th>
+        <th>Last Name</th>
+        <th>Street Address</th>
+        <th>City</th>
+        <th>State</th>
+        <th>Zip Code</th>
+        <th>Email</th>
+        <th>Phone Number</th>
+        <th>Insurance</th>
+        <th>Medication</th>
+        <th>Contact Method</th>
+        
+    </tr>
+    
+    </thead>
+
+    {% for entry in all_entries %}
+    <tr>
+        <td>{{ entry.first_name }}</td>
+        <td>{{ entry.last_name }}</td>
+        <td>{{ entry.street_address }}</td>
+        <td>{{ entry.city }}</td>
+        <td>{{ entry.state }}</td>
+        <td>{{ entry.zip_code }}</td>
+        <td>{{ entry.email }}</td>
+        <td>{{ entry.phone }}</td>
+        <td>{{ entry.insurance }}</td>
+        <td>{{ entry.medication }}</td>
+        <td>{{ entry.Contact_method }}</td>
+
+    </tr>
+
+    {% endfor %}
+=
+
+</table>
