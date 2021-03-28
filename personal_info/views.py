@@ -1,6 +1,9 @@
 from django.shortcuts import render, redirect
 from .forms import personform
 from .models import Person
+from django.http import JsonResponse
+import pandas as pd
+from django.core import serializers
 
 # Create your views here.
 def pi(request):
@@ -15,7 +18,7 @@ def pi(request):
 
 def therapist(request):
     all_entries = Person.objects.all()
-    #all_entries =  personal_info_person.objects.all()
-    #print (all_entries)
-    return render(request, 'personal_info/therapist.html', {'all_entries': all_entries })
+    relevant = Person.objects.values_list('street_address','city','state','zip_code')
+    
+    return render(request, 'personal_info/therapist.html', {'all_entries': all_entries})
 
