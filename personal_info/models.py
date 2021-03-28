@@ -19,7 +19,7 @@ class Person(models.Model):
     emergency_contact_relationship = models.CharField(max_length=30)
     insurance = models.CharField(max_length=30)
     medication = models.CharField(max_length=100)
-    reason_for_going_to_therapy = models.CharField(max_length=500)
+    reason_for_going_to_therapy = models.CharField(max_length=500, default='Unspecified')
 
     Do_you_smoke = (
     ("Yes", "Yes"),
