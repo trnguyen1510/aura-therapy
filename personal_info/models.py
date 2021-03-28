@@ -1,22 +1,24 @@
 from django.db import models
+from django.contrib.auth.models import User
+from django.db.models.signals import post_save
+from datetime import date
 
 # Create your models here.
-class Person(models.Model):
-    person_id = models.AutoField(primary_key=True)
-    first_name = models.CharField(max_length=30)
-    last_name = models.CharField(max_length=30)
-    street_address = models.CharField(max_length=50)
+class Profile(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    middlename = models.CharField(max_length=50, blank=True, default='')
+    date_of_birth = models.DateField(auto_now=False)
+    address = models.CharField(max_length=50)
     city = models.CharField(max_length=30)
     state = models.CharField(max_length=30)
     zip_code = models.CharField(max_length=10)
-    email = models.CharField(max_length=50)
-    phone = models.CharField(max_length=15)
-    employment = models.CharField(max_length=50)
-    emergency_contact_first = models.CharField(max_length=50)
-    emerency_contact_last = models.CharField(max_length=50)
-    emergency_contact_phone = models.CharField(max_length=15)
-    emergency_contact_email = models.CharField(max_length=50)
-    emergency_contact_relationship = models.CharField(max_length=30)
+    phone = models.CharField(max_length=13, blank=True, default='')
+    occupation = models.CharField(max_length=100, default='Occupation', blank=True)
+    emergency_contact_first = models.CharField(max_length=50, default='', blank=True)
+    emergency_contact_last = models.CharField(max_length=50, default='', blank=True)
+    emergency_contact_phone = models.CharField(max_length=15, default='', blank=True)
+    emergency_contact_email = models.CharField(max_length=50, default='', blank=True)
+    emergency_contact_relationship = models.CharField(max_length=30, default='', blank=True)
     insurance = models.CharField(max_length=30)
     medication = models.CharField(max_length=100)
     reason_for_going_to_therapy = models.CharField(max_length=500, default='Unspecified')
@@ -79,3 +81,15 @@ class Person(models.Model):
     Contact_method = models.CharField(max_length=500, default='Unspecified', choices=Contact_method)
     medical_history = models.CharField(max_length=500, default='Unspecified', choices=medical_history)
     family_history = models.CharField(max_length=500, default='Unspecified', choices=family_history)
+    
+    
+    
+    def __str__(self):
+        return self.user.username
+
+def create_profile(sender, **kwargs):
+    user = kwargs["instance"]
+    if kwargs["created"]:
+        user_profile = Profile(user=user)
+        user_profile.save()
+post_save.connect(create_profile, sender=User)
